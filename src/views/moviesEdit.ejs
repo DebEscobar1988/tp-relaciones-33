@@ -12,7 +12,7 @@
     <figure>
         <img src="/img/logo-DH.png" alt="Logo Digital House">
       </figure> 
-    <h1 class="titulo">Película Editada:  <%= Movie.title %></h1>
+    <h1 class="titulo">Película Editada:<%= Movie.title %></h1>
     <section class="formulario">
         <form action="/movies/update/<%= Movie.id %>" method="POST">
             <label for="title">Title </label>
@@ -21,6 +21,7 @@
             <p><input type="number" name="rating" id="" value="<%= Movie.rating %>" required></p>
             <label for="awards">Awards </label>
             <p><input type="number" name="awards" id="" value="<%= Movie.awards %>" required></p>
+           
             <label for="release_date">Release date </label>
             <p><input type="date" name="release_date" id="" value="<%= moment(Movie.release_date).format('YYYY-MM-DD') %>" required></p>
             <label for="length">Length </label>

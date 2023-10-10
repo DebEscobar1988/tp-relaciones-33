@@ -16,12 +16,12 @@
     <p>RATING: <%= movie.rating %> </p>
     <p>AWARDS: <%= movie.awards %> </p>
     <p>LENGTH: <%= movie.length + ' min'%> </p>
-    <p>RELEASE DATE: <%= movie.release_date %> </p>
+    <p>RELEASE DATE: <%= moment(movie.release_date).format('DD-MM-YYYY') %> </p>
     <p>GENERO: <%= movie.genre ? movie.genre.name : 'SIN ESPECIFICAR' %> </p>
     <br>
     <section>
         <a class="botonAgregar" href="/movies/edit/<%= movie.id %>">Editar Pelicula</a>
-
+        <a class="botonBorrar" href="/movies/delete/<%= movie.id %>">Borrar Pelicula</a>
         <!--Aquí debe colocar los botones de Modificar - Borrar y Listado de Películas-->
     </section>
 
