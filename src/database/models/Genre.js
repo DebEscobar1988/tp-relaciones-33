@@ -30,9 +30,14 @@ module.exports = (sequelize, dataTypes) => {
         updatedAt: 'updated_at',
         deletedAt: false
     }
+  
     const Genre = sequelize.define(alias, cols, config);
-
-    //Aquí debes realizar lo necesario para crear las relaciones con el modelo (Movie)
-
+    Genre.associate = function(models){
+    Genre.hasMany(models.Movie,{
+        as: 'movies',
+        foreignKey :'genre_id'
+    })
+};
+    /* genre_id es la relación que une la tabla Genre con la foreignkey(genre_id) que está en la tabla Movie*/
     return Genre
 };

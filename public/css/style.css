@@ -6,10 +6,20 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:rgb(200, 198, 198);
 }
-
+.lista_películas{
+  margin:10px 19px ;
+}
+.lista_películas li{
+  margin-top: 10px;
+  
+}
+.lista_películas li a{
+  color:mediumvioletred ;
+}
 a {
-  color: #00B7FF;
+  color:indigo;
   text-decoration: none;
 }
 img{

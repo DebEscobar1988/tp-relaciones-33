@@ -13,8 +13,13 @@
     </figure>    
     <h1><%= genre.name %> </h1>
     <br>
-    <p>NAME: <%= genre.name %> </p>
-    <p>RANKIG: <%= genre.ranking %> </p>
-
+    <p><strong>NAME:</strong>  <%= genre.name %> </p>
+    <p><strong>RANKIG:</strong> <%= genre.ranking %> </p>
+    <p><strong>PELÍCULAS QUE PERTENECEN A ESTE GÉNERO:</strong></p> 
+<ol class="lista_películas">
+   <% genre.movies.forEach(movie => { %>
+   <li ><a href="/movies/detail/<%= movie.id %>"><%= movie.title %></a></li>
+    <% }) %>
+   </ol>
 </body>
 </html>
