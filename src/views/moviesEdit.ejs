@@ -6,34 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title class="titulo">Editar Película</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
+
 <body>
-    <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
-      </figure> 
-    <h1 class="titulo">Película Editada:<%= Movie.title %></h1>
-    <section class="formulario">
-        <form action="/movies/update/<%= Movie.id %>" method="POST">
-            <label for="title">Title </label>
-            <p><input type="text" name="title" id="" value="<%= Movie.title %>" required></p>
-            <label for="rating">Rating </label>
-            <p><input type="number" name="rating" id="" value="<%= Movie.rating %>" required></p>
-            <label for="awards">Awards </label>
-            <p><input type="number" name="awards" id="" value="<%= Movie.awards %>" required></p>
-           
-            <label for="release_date">Release date </label>
-            <p><input type="date" name="release_date" id="" value="<%= moment(Movie.release_date).format('YYYY-MM-DD') %>" required></p>
-            <label for="length">Length </label>
-            <p><input type="number" name="length" id="" value="<%= Movie.length %>" required></p>
-            <label for="genre_id">Genre </label>
-            <p>
-                <select name="genre_id" id="" required>
+
+<header class="header_logo" >
+<figure >
+    <img src="/img/logo-DH.png" alt="Logo Digital House">
+</figure> 
+</header>
+<main class="fondo_edit">
+    <section>
+        <form class="form_edit" action="/movies/update/<%= Movie.id %>" method="POST">
+            <div class="row d-flex justify-content-between">
+               <div class="col-md-5">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control" id="title" name="title" value="<%= Movie.title %>">
+              </div>  
+              <div class="col-md-3">
+                <label for="rating" class="form-label">Rating</label>
+                <input type="number" class="form-control" id="rating" name="rating" value="<%= Movie.rating %>" >
+              </div>
+
+              <div class="col-md-3">
+                <label for="awards" class="form-label">Awards</label>
+                <input type="number" class="form-control" id="awards" name="awards" value="<%= Movie.awards %>" >
+            </div>
+<!-- ------------------------- -->
+              <div class="d-flex justify-content-between gap-1">
+                <div class="col-md-4">
+                 <label for="release_date" class="form-label">Fecha de estreno</label>
+                 <input type="date" class="form-control" id="release_date" name="release_date" value="<%= moment(Movie.release_date).format('YYYY-MM-DD') %>">
+               </div>  
+               <div class="col-md-3">
+                 <label for="length" class="form-label">Duración</label>
+                 <input type="number" class="form-control" id="length" name="length" value="<%= Movie.length %>">
+               </div>
+ 
+               <div class="col-md-4">
+                 <label for="genre_id" class="form-label">Género</label>
+                 <select class="form-select" name="genre_id" id="genre_id" >
                     <% allGenres.forEach(genre => { %>
-                    <option value="<%= genre.id %>" <% if (Movie.genre_id == genre.id) { %><%= 'selected' %><% }; %>><%= genre.name %></option>
+                    <option value="<%= genre.id %>" <% if (Movie.genre_id == genre.id) { %><%= 'selected' %><% } %>><%= genre.name %></option>
                     <% }); %>
                 </select>
-            </p>
+               </div>
+            </div>
+    </section>
+
+    <div class="mb-3 col-12" style="margin-top:50px ;">
+        <div class="row">
+                <% actors.forEach(actor => { %>
+            <div class="col-12 col-md-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" <%= Movie.actors.map(actor=> actor.id).includes(actor.id) && 'checked'%> value="<%= actor.id %>" id="actor<%= actor.id %>">
+                    <label class="form-check-label" for="actor<%= actor.id %> ">
+                     <%= actor.first_name %><%= actor.last_name %>
+                    </label>
+                </div>
+            </div>
+                <% }) %>
+        </div>
+    </div>
 
     <!--
             <label for="genre_id">Genre ID </label>
@@ -41,11 +77,12 @@
         -->
             
             <br>
-            <p> <button class="botonAgregar" type="submit">Actualizar</button>
+            <p> <button class="btn btn-outline-dark" type="submit">Actualizar</button>
         
-            <a  class="botonVolver" href="/movies">Listado de Películas</a></p>
+            <a  class="btn btn-outline-dark" href="/movies">Listado de Películas</a></p>
         </form>
     </section>
+</main>
 </body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

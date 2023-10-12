@@ -16,15 +16,15 @@ const Actors = db.Actor;
 const moviesController = {
   list: (req, res) => {
     db.Movie.findAll().then((movies) => {
-      res.render("moviesList.ejs", { movies });
+     return res.render("moviesList.ejs", { movies });
     });
   },
   detail: (req, res) => {
     db.Movie.findByPk(req.params.id, {
-      include: ["genre"],
+      include: ["genre","actors"],
     }).then((movie) => {
       /*  return res.send(movie) */
-      res.render("moviesDetail.ejs", { movie, moment });
+    return res.render("moviesDetail.ejs", { movie, moment });
     });
   },
   new: (req, res) => {
@@ -47,12 +47,18 @@ const moviesController = {
   },
   //Aqui dispongo las rutas para trabajar con el CRUD
   add: function (req, res) {
-    db.Genre.findAll({
+   const genres= db.Genre.findAll({
       order: ["name"],
     })
-      .then((allGenres) => {
+    const actors = db.Actor.findAll({
+      order:[['first_name'],
+            ['last_name']]
+    })
+    Promise.all([genres,actors])
+      .then(([allGenres, actors]) => {
         return res.render("moviesAdd", {
           allGenres,
+          actors,
           moment
           
         });
@@ -96,14 +102,23 @@ const moviesController = {
     const allGenres = db.Genre.findAll({
       order: ["name"],
     });
-    const movie = db.Movie.findByPk(req.params.id);
-
-    Promise.all([allGenres, movie])
-      .then(([allGenres, movie]) => {
+    const movie = db.Movie.findByPk(req.params.id,{
+      include : ['actors']/* mando la película y los actores */
+    });
+    const actors = db.Actor.findAll({
+      order :[  
+         ['first_name'],
+         ['last_name']
+      ]
+      
+    })
+    Promise.all([allGenres, movie, actors])
+      .then(([allGenres, movie, actors]) => {
         return res.render("moviesEdit", {
-          Movie: movie,
+          Movie:movie,
           moment,
           allGenres,
+          actors
         });
       })
       .catch((error) => console.log(error));

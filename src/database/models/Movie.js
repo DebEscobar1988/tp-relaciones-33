@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = 'Movie'; // esto debería estar en singular
+    let alias = 'Movie'; // el alias debe estar en singular
     let cols = {
         id: {
             type: dataTypes.BIGINT(10).UNSIGNED,
@@ -48,7 +48,9 @@ Movie.belongsToMany(models.Actor, {
     through:'actor_movie',
     foreignKey:'movie_id',
     otherKey:'actor_id'
-})
+});
+
+
 }
     return Movie
 };

@@ -3,10 +3,19 @@
   margin: 0;
   padding: 0;
 }
+.logo-detail{
+  margin-top: 35px;
+  margin-bottom: 5px;
+}
+.header_logo{
+width: 100%;
+background-color:white;
+border-bottom: 5px solid black;
+border-top:5px solid black ;
+}
 body {
-  padding: 50px;
+
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color:rgb(200, 198, 198);
 }
 .lista_películas{
   margin:10px 19px ;
@@ -15,15 +24,22 @@ body {
   margin-top: 10px;
   
 }
-.lista_películas li a{
-  color:mediumvioletred ;
-}
+
 a {
   color:indigo;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 img{
   width: 100%;
+}
+.imagen_deFondo{
+  background-image:url("https://st.depositphotos.com/1035837/1945/i/450/depositphotos_19457211-stock-photo-film.jpg") ;
+}
+.fondo_edit{
+  padding:150px  100px !important;
+  background-image: url('/img/cine-peli-transformed.jpeg');
+  background-repeat: no-repeat;
+ background-size: cover;
 }
 figure{
   width: 20%;
@@ -52,4 +68,8 @@ figure{
 .formulario{
   margin: auto;
   width: 20%;
+}
+.form_edit{
+  width: 80%;
+  margin: 0 auto;
 }
