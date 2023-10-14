@@ -14,16 +14,16 @@
 
 <header class="header_logo" >
 <figure >
-    <img src="/img/logo-DH.png" alt="Logo Digital House">
+    <a href="/"><img src="/img/logo-DH.png" alt="Logo Digital House"></a>
 </figure> 
 </header>
 <main class="fondo_edit">
     <section>
-        <form class="form_edit" action="/movies/update/<%= Movie.id %>" method="POST">
+        <form class="form_edit" action="/movies/update/<%= Movie.id %>?_method=PUT" method="POST">
             <div class="row d-flex justify-content-between">
                <div class="col-md-5">
                 <label for="title" class="form-label">Título</label>
-                <input type="text" class="form-control" id="title" name="title" value="<%= Movie.title %>">
+                <input type="text" class="form-control" id="title" name="title" value="<%= Movie.title.toUpperCase() %>">
               </div>  
               <div class="col-md-3">
                 <label for="rating" class="form-label">Rating</label>
@@ -53,6 +53,12 @@
                     <% }); %>
                 </select>
                </div>
+               <div class="col-12 col-md-3">
+               <div>
+                <label for="formFile" class="form-label">Cambiar Imágen</label>
+                <input class="form-control" type="file" id="formFile" name="image">
+               </div>
+               </div>
             </div>
     </section>
 
@@ -60,8 +66,10 @@
         <div class="row">
                 <% actors.forEach(actor => { %>
             <div class="col-12 col-md-3">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" <%= Movie.actors.map(actor=> actor.id).includes(actor.id) && 'checked'%> value="<%= actor.id %>" id="actor<%= actor.id %>">
+                <div class="form-check">    
+                    <!-- Con el map itera sobre todos los actores corresponientes a la pelicula y los compara con la iteracion de todos los actores, devuelve un true si coincide y procede a tildar el checkbox-->
+                    <input name="actors" class="form-check-input" type="checkbox"
+                     <%= Movie.actors.map(actorMovie=> actorMovie.id ).includes(actor.id) && 'checked'%> value="<%= actor.id %>" id="actor<%= actor.id %>">
                     <label class="form-check-label" for="actor<%= actor.id %> ">
                      <%= actor.first_name %><%= actor.last_name %>
                     </label>

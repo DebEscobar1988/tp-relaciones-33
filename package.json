@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nodemon src/app.js"
+    "test": "nodemon src/app.js",
+    "db:create": "sequelize db:drop & sequelize db:create & sequelize db:migrate",
+    "db:reset": "sequelize db:migrate:undo:all & sequelize db:migrate & sequelize db:seed:all"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "express-validator": "^7.0.1",
+    "method-override": "^3.0.0",
     "moment": "^2.29.4",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"

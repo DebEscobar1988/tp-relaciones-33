@@ -10,7 +10,7 @@
 
 <body>
     <figure>
-        <img src="/img/logo-DH.png" alt="Logo Digital House">
+        <a href="/"><img src="/img/logo-DH.png" alt="Logo Digital House"></a>
       </figure>
     <h1 class="titulo">Agregar Película</h1>
     <br>
@@ -63,18 +63,18 @@
                 <select name="genre_id" id="">
                     <% if ( locals.old && old.genre_id) { %>
                         <option value="<%= old.genre_id %>"  selected>
-                            <% allGenres.find(genre => { %>
+                            <% genres.find(genre => { %>
                               <%= old.genre_id == genre.id ? genre.name : "" %> 
                             <% }) %>
                         </option>
 
-                        <% allGenres.forEach(genre => { %>
+                        <% genres.forEach(genre => { %>
                             <option value="<%= genre.id %>"><%= genre.name %></option>
                             <% }); %>
                             
                     <% }else{  %>
                     <option value="" disabled selected>- select genre - </option>
-                    <% allGenres.forEach(genre => { %>
+                    <% genres.forEach(genre => { %>
                     <option value="<%= genre.id %>"><%= genre.name %></option>
                     <% }); %>
                     <% } %>
@@ -84,6 +84,29 @@
                  
                 <% } %>
             </p>
+            <div class="col-12 col-md-3">
+                <div>
+                 <label for="formFile" class="form-label">Agregar Imágen</label>
+                 <input class="form-control" type="file" id="formFile" name="image">
+                </div>
+                </div>
+             </div>
+     </section>
+ 
+     <div class="mb-3 col-12" style="margin-top:50px ;">
+         <div class="row">
+                 <% actors.forEach(actor => { %>
+             <div class="col-12 col-md-3">
+                 <div class="form-check">
+                     <input name="actors" class="form-check-input" type="checkbox" value="<%= actor.id %>" id="actor<%= actor.id %>">
+                     <label class="form-check-label" for="actor<%= actor.id %> ">
+                      <%= actor.first_name %><%= actor.last_name %>
+                     </label>
+                 </div>
+             </div>
+                 <% }) %>
+         </div>
+     </div>
             <br>
             <p> <button class="botonAgregar" type="submit">Agregar</button>
             
