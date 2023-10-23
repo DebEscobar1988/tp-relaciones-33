@@ -5,23 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>listado de Generos</title>
-    <link rel='stylesheet' href='/css/style.css' />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ <link rel='stylesheet' href='/css/style.css' />
 </head>
 
-<body>
-    <figure>
+<body class="fondo_list-2">
+    <figure class="logo-list">
         <img src="/img/logo-DH.png" alt="Logo Digital House">
       </figure>
-    <h1>LISTADO DE GENEROS</h1>
-    <ul>
+    <h1 class="genre-list">LISTADO DE GENEROS</h1>
+    <div class="list-group text-danger">
+    <ul class="listado_generos">
         <% for( let i = 0; i < genres.length; i++ ) { %>
         <li>
-            <a href="/genres/detail/<%= genres[i].id %>"><%= genres[i].name %></a>
+            <a href="/genres/detail/<%= genres[i].id %>" class="list-group-item list-group-item-action"><%= genres[i].name %></a>
         </li>
         <% } %>
 
     </ul>
-</body>
+    <p>
+     
+        <a class="btn btn-outline-dark" href="/">inicio</a>
 
+    </p>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

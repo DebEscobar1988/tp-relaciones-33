@@ -125,7 +125,8 @@ const moviesController = {
       .catch((error) => console.log(error));
   },
   update: function (req, res) {
-    const { title, rating, awards, relase_date, length, genre_id, actors } = req.body;
+   let { title, rating, awards, relase_date, length, genre_id, actors } = req.body;
+    actors = typeof actors == "string" ? [actors] : actors /* si viene un string, transformalo en array */
     db.Movie.update(
       {
         title: title.trim(),

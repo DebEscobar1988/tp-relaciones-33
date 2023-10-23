@@ -7,8 +7,16 @@ module.exports = (sequelize, dataTypes) => {
          
             autoIncrement: true
         },
-        actor_id: dataTypes.BIGINT(10),
-        movie_id: dataTypes.BIGINT(10)
+
+        movie_id:{
+            type:dataTypes.INTEGER.UNSIGNED,
+            allowNull: false
+        },
+        actor_id:{
+            type : dataTypes.INTEGER.UNSIGNED,
+            allowNull:false
+        }
+        
       
     };
     let config = {
